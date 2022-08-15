@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "livereload",
+    "uniauth",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -101,6 +102,16 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+# CAS
+
+AUTHENTICATION_BACKENDS = [
+    "uniauth.backends.CASBackend",
+]
+
+LOGIN_URL = "/auth/login/"
+UNIAUTH_LOGIN_DISPLAY_STANDARD = False
+UNIAUTH_LOGOUT_CAS_COMPLETELY = True
 
 
 # Internationalization
