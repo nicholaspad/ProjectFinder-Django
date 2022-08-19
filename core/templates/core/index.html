@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head></head>
+{% extends "core/base.html" %} {% block content %}
 
-  <body>
-    <p>Welcome {{ netid }}!!</p>
-  </body>
-</html>
+<p class="fw-bolder">Welcome {{netid}}!!</p>
+<button type="button" class="btn btn-primary">Bootstrap!</button>
+
+{% endblock content %}
