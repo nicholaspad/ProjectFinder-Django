@@ -107,6 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     "uniauth.backends.CASBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 LOGIN_URL = "/auth/login/"
