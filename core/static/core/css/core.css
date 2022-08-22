@@ -1,3 +1,14 @@
-body {
-  background: gray;
+/* Navbar */
+.pf-navbar-items {
+  justify-content: end;
+}
+
+.pf-navbar-settings-entrypoint {
+  cursor: pointer;
+}
+
+/* Info accordian */
+
+.pf-info-accordian {
+  padding: 0 4rem;
 }

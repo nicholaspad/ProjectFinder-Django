@@ -1,16 +1,23 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>COS333 | ProjectFinder</title>
-    <link href="{% static 'core/pkg/bootstrap.min.css' %}" rel="stylesheet" />
-    <script src="{% static 'core/pkg/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'core/pkg/bootstrap.bundle.min.js' %}"></script>
-  </head>
 
-  <body>
-    {% block content %}{% endblock content %}
-    <link href="{% static 'core/css/core.css' %}" rel="stylesheet" />
-    <script src="{% static 'core/js/core.js' %}"></script>
-  </body>
+<head>
+  <title>COS333 | ProjectFinder</title>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <link href="{% static 'core/pkg/bootstrap.min.css' %}"
+        rel="stylesheet" />
+  <script src="{% static 'core/pkg/jquery-3.6.0.min.js' %}"></script>
+  <script src="{% static 'core/pkg/bootstrap.bundle.min.js' %}"></script>
+</head>
+
+<body>
+  {% block content %}{% endblock content %}
+  <link href="{% static 'core/css/core.css' %}"
+        rel="stylesheet" />
+  <script src="{% static 'core/js/core.js' %}"></script>
+</body>
+
 </html>

@@ -1,6 +1,7 @@
-{% extends "core/base.html" %} {% block content %}
-
-<p class="fw-bolder text-primary">Welcome {{netid}}!!</p>
-<button type="button" class="btn btn-primary">Bootstrap!</button>
-
+{% extends "core/base.html" %}
+{% block content %}
+{% include "core/navbar.html" %}
+<div class="container-md">
+    {% include "core/info.html" %}
+</div>
 {% endblock content %}
