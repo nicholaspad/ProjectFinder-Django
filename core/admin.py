@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Config
+from .models import Config, Entry
 
 admin.site.register(Config)
+admin.site.register(Entry)
 
 ADMIN_SITE_NAME = "ProjectFinder Admin"
 admin.site.site_header = ADMIN_SITE_NAME
