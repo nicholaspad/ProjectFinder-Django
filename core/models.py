@@ -11,6 +11,7 @@ class Config(models.Model):
 class Entry(models.Model):
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now=True)
+    last_modified_date = models.DateTimeField(auto_now=True)
     skills = models.TextField(
         default="",
         help_text="Comma-separated list of frameworks and technologies",
