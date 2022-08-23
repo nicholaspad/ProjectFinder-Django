@@ -17,3 +17,11 @@
 .pf-entry-table {
   margin-bottom: 0 !important;
 }
+
+/* Misc */
+
+@media (min-width: 768px) {
+  .main-content-padding {
+    padding: 0 4rem;
+  }
+}
