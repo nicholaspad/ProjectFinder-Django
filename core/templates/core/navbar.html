@@ -14,7 +14,9 @@
              id="pf-navbar">
             <div class="navbar-nav">
                 <!-- Controlled by JS -->
-                <a class="pf-navbar-settings-entrypoint nav-link me-2">Settings</a>
+                <a class="pf-navbar-settings-entrypoint nav-link me-2"
+                   data-bs-toggle="modal"
+                   data-bs-target="#settings-modal">Settings</a>
                 <!-- Direct to logout endpoint -->
                 <a class="nav-link"
                    href="#">Logout</a>
@@ -22,3 +24,5 @@
         </div>
     </div>
 </nav>
+
+{% include "core/modals/settings_modal.html" %}
