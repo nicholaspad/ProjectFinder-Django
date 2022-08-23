@@ -9,11 +9,6 @@
 
 /* Entry Table */
 
-.pf-entry-table-container {
-  border-radius: 0.25rem;
-  overflow: hidden;
-}
-
 .pf-entry-table {
   margin-bottom: 0 !important;
 }
