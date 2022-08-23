@@ -16,19 +16,21 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="form-floating">
-                    <input type="email"
-                           class="form-control"
-                           id="email-address-input"
-                           placeholder="Email address">
-                    <label for="email-address-input">Email address</label>
-                </form>
-                <form class="form-floating mt-3">
-                    <input type="text"
-                           class="form-control"
-                           id="name-input"
-                           placeholder="Full name">
-                    <label for="name-input">Full name</label>
+                <form>
+                    <div class="mb-3">
+                        <label for="email-address-input"
+                               class="form-label">Email address</label>
+                        <input type="email"
+                               class="form-control"
+                               id="email-address-input">
+                    </div>
+                    <div>
+                        <label for="name-input"
+                               class="form-label">Full name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name-input">
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
