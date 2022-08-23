@@ -7,12 +7,13 @@
   cursor: pointer;
 }
 
-/* Info accordian */
+/* Entry Table */
 
-.pf-info-accordian {
-  padding: 0 4rem;
+.pf-entry-table-container {
+  border-radius: 0.25rem;
+  overflow: hidden;
 }
 
-.pf-info-netid {
-  padding: 0 4rem;
+.pf-entry-table {
+  margin-bottom: 0 !important;
 }
