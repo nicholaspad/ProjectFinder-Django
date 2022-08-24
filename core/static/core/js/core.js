@@ -4,16 +4,18 @@ $("#settings-modal-save-btn").click(() => {
   };
 
   const emailInput = $("#settings-modal-email-input");
-  const nameInput = $("#settings-modal-name-input");
+  const firstNameInput = $("#settings-modal-first-name-input");
+  const lastNameInput = $("#settings-modal-last-name-input");
 
   const email = String(emailInput.val()).toLowerCase();
-  const name = String(nameInput.val());
+  const firstName = String(firstNameInput.val());
+  const lastName = String(lastNameInput.val());
 
-  if (!validateEmail(email) || name.length < 1) {
+  if (!validateEmail(email) || firstName.length < 1 || lastName.length < 1) {
     return;
   }
 
-  $.post("/", { email, name }, (res) => {
+  $.post("/", { email, firstName, lastName }, (res) => {
     console.log(res);
   });
 });
