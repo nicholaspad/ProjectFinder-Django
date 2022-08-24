@@ -13,20 +13,8 @@ $("#settings-modal-save-btn").click(() => {
     return;
   }
 
-  $.ajax({
-    url: "/",
-    cache: "false",
-    dataType: "json",
-    type: "POST",
-    data: { email, name },
-    beforeSend: (xhr) => xhr.setRequestHeader("X-CSRFToken", CSRF_TOKEN),
-    success: (res) => {
-      console.log("success");
-    },
-    error: (res) => {
-      console.log(res);
-      console.log("error");
-    },
+  $.post("/", { email, name }, (res) => {
+    console.log(res);
   });
 });
 

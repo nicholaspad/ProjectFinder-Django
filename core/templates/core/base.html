@@ -7,10 +7,10 @@
       <meta charset="utf-8">
       <meta name="viewport"
             content="width=device-width, initial-scale=1">
+      <meta name="csrf-token"
+            content="{{ csrf_token }}">
       <link href="{% static 'core/pkg/bootstrap.min.css' %}"
             rel="stylesheet" />
-      <!-- <link href="{% static 'core/pkg/bootstrap-icons.css' %}"
-            rel="stylesheet"> -->
       <link rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
       <script src="{% static 'core/pkg/jquery-3.6.0.min.js' %}"></script>
@@ -22,7 +22,7 @@
       <link href="{% static 'core/css/core.css' %}"
             rel="stylesheet" />
       <script>
-            var CSRF_TOKEN = '{{ csrf_token }}';
+            $.ajaxSetup({ headers: { 'X-CSRFToken': $('meta[name="csrf-token"]').attr('content') } });
       </script>
       <script src="{% static 'core/js/core.js' %}"></script>
 </body>

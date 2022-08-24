@@ -30,8 +30,5 @@ class IndexView(generic.TemplateView):
             response.status_code = 400
             return response
 
-        print("success", email, name)
-        print(netid)
-
         response.status_code = 201
         return response
