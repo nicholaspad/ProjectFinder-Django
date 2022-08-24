@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -19,7 +20,7 @@ class ConfigAdmin(admin.ModelAdmin):
 
 
 class Entry(models.Model):
-    # author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now=True)
     last_modified_date = models.DateTimeField(auto_now=True)
     skills = models.TextField(
