@@ -1,5 +1,4 @@
 $("#settings-modal-save-btn").click((e) => {
-  e.preventDefault();
   const validateEmail = (email) => {
     return email.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
   };
@@ -16,10 +15,15 @@ $("#settings-modal-save-btn").click((e) => {
     return;
   }
 
+  e.preventDefault();
+  $("#settings-modal-save-btn").addClass("disabled");
+
   $.post("/", { email, firstName, lastName }, (res) => {
     emailInput.val = email;
     firstNameInput.val = firstName;
     lastNameInput.val = lastName;
+    $("#settings-modal").modal("toggle");
+    $("#settings-modal-save-btn").removeClass("disabled");
   });
 });
 
