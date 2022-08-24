@@ -1,12 +1,27 @@
 $("#settings-modal-save-btn").click(() => {
+  const validateEmail = (email) => {
+    return email.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+  };
+
   const emailInput = $("#settings-modal-email-input");
   const nameInput = $("#settings-modal-name-input");
 
-  const email = emailInput.val();
-  const name = nameInput.val();
+  const email = String(emailInput.val()).toLowerCase();
+  const name = String(nameInput.val());
 
-  $.post("/", { email, name }, (res) => {
-    console.log(res);
+  if (!validateEmail(email) || name.length < 1) {
+    return;
+  }
+
+  $.ajax({
+    url: "/",
+    cache: "false",
+    dataType: "json",
+    type: "POST",
+    data: { email, name },
+    beforeSend: (xhr) => xhr.setRequestHeader("X-CSRFToken", CSRF_TOKEN),
+    success: function (data) {},
+    error: function (error) {},
   });
 });
 
