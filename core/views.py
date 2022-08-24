@@ -19,16 +19,19 @@ class IndexView(generic.TemplateView):
     def post(self, request):
         email = request.POST.get("email")
         name = request.POST.get("name")
+        netid = self.request.user.uniauth_profile.get_display_id()
 
         response = HttpResponse()
         if (
             not re.match(r"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", email)
             or len(name) < 1
+            or not netid
         ):
             response.status_code = 400
             return response
 
         print("success", email, name)
+        print(netid)
 
         response.status_code = 201
         return response
