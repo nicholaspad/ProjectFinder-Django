@@ -18,14 +18,21 @@ $("#settings-modal-save-btn").click((e) => {
   e.preventDefault();
   $("#settings-modal-save-btn").addClass("disabled");
 
-  $.post("/", { email, firstName, lastName }, (res) => {
-    emailInput.val = email;
-    firstNameInput.val = firstName;
-    lastNameInput.val = lastName;
-    $("#settings-modal").modal("toggle");
-    $("#settings-modal-save-btn").removeClass("disabled");
-  });
+  $.post("/", { email, firstName, lastName })
+    .done(() => {
+      emailInput.val = email;
+      firstNameInput.val = firstName;
+      lastNameInput.val = lastName;
+      alert("Your settings have been updated!");
+      $("#settings-modal").modal("toggle");
+    })
+    .fail(() => alert("Failed to update your settings."))
+    .always(() => $("#settings-modal-save-btn").removeClass("disabled"));
 });
+
+/****************************************************************************/
+/****************************************************************************/
+/****************************************************************************/
 
 // Source: https://getbootstrap.com/docs/5.2/forms/validation/#custom-styles
 (() => {
