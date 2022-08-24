@@ -20,8 +20,13 @@ $("#settings-modal-save-btn").click(() => {
     type: "POST",
     data: { email, name },
     beforeSend: (xhr) => xhr.setRequestHeader("X-CSRFToken", CSRF_TOKEN),
-    success: function (data) {},
-    error: function (error) {},
+    success: (res) => {
+      console.log("success");
+    },
+    error: (res) => {
+      console.log(res);
+      console.log("error");
+    },
   });
 });
 

@@ -1,5 +1,7 @@
+import re
+
+from django.http import HttpResponse
 from django.views import generic
-from rest_framework.views import APIView
 
 from .models import Config
 
@@ -15,5 +17,18 @@ class IndexView(generic.TemplateView):
         return context
 
     def post(self, request):
-        print(request)
-        pass
+        email = request.POST.get("email")
+        name = request.POST.get("name")
+
+        response = HttpResponse()
+        if (
+            not re.match(r"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", email)
+            or len(name) < 1
+        ):
+            response.status_code = 400
+            return response
+
+        print("success", email, name)
+
+        response.status_code = 201
+        return response
