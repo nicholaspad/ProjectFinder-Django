@@ -11,32 +11,20 @@
             </tr>
         </thead>
         <tbody>
+            {% for row in table_data %}
             <tr>
-                <td>Nicholas Padmanabhan</td>
-                <td><code>ntyp</code></td>
+                <td>{{ row.name }}</td>
+                <td><code>{{ row.netid }}</code></td>
                 <td>
-                    <span class="badge rounded-pill bg-secondary">React</span>
-                    <span class="badge rounded-pill bg-secondary">Hacklang</span>
-                    <span class="badge rounded-pill bg-secondary">Python</span>
-                    <span class="badge rounded-pill bg-secondary">jQuery</span>
+                    {% for skill in row.skills %}
+                    <span class="badge rounded-pill bg-secondary">{{ skill }}</span>
+                    {% endfor %}
                 </td>
-                <td>Course selection apps</td>
-                <td>TigerSnatch</td>
-                <td>Get notified about seat openings</td>
+                <td>{{ row.interests }}</td>
+                <td>{{ row.project_name }}</td>
+                <td>{{ row.project_description }}</td>
             </tr>
-            <tr>
-                <td>Nicholas Padmanabhan</td>
-                <td><code>ntyp</code></td>
-                <td>
-                    <span class="badge rounded-pill bg-secondary">React</span>
-                    <span class="badge rounded-pill bg-secondary">Hacklang</span>
-                    <span class="badge rounded-pill bg-secondary">Python</span>
-                    <span class="badge rounded-pill bg-secondary">jQuery</span>
-                </td>
-                <td>Course selection apps</td>
-                <td>TigerSnatch</td>
-                <td>Get notified about seat openings</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
