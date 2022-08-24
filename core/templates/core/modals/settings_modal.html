@@ -25,6 +25,7 @@
                                type="email"
                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                class="form-control"
+                               value="{{ user.email }}"
                                required>
                         <div class="invalid-feedback">
                             Please provide a valid email address!
@@ -36,6 +37,7 @@
                         <input id="settings-modal-first-name-input"
                                type="text"
                                class="form-control"
+                               value="{{ user.first_name }}"
                                required>
                         <div class="invalid-feedback">
                             Please provide your first name!
@@ -47,6 +49,7 @@
                         <input id="settings-modal-last-name-input"
                                type="text"
                                class="form-control"
+                               value="{{ user.last_name }}"
                                required>
                         <div class="invalid-feedback">
                             Please provide your last name!

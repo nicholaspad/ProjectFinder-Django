@@ -1,4 +1,5 @@
-$("#settings-modal-save-btn").click(() => {
+$("#settings-modal-save-btn").click((e) => {
+  e.preventDefault();
   const validateEmail = (email) => {
     return email.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
   };
@@ -16,7 +17,9 @@ $("#settings-modal-save-btn").click(() => {
   }
 
   $.post("/", { email, firstName, lastName }, (res) => {
-    console.log(res);
+    emailInput.val = email;
+    firstNameInput.val = firstName;
+    lastNameInput.val = lastName;
   });
 });
 

@@ -12,9 +12,12 @@ class IndexView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        netid = self.request.user.uniauth_profile.get_display_id()
         config = Config.objects.first()
-        context["netid"] = self.request.user.uniauth_profile.get_display_id()
+        user = User.objects.filter(username=f"cas-princeton-{netid}").first()
+        context["netid"] = netid
         context["config"] = config
+        context["user"] = user
         return context
 
     def post(self, request):
