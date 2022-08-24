@@ -32,31 +32,33 @@ $(document).ready(() => {
       .always(() => $("#settings-modal-save-btn").removeClass("disabled"));
   });
 
-  $("#entry-table").DataTable();
-})(
-  /****************************************************************************/
-  /****************************************************************************/
-  /****************************************************************************/
+  $("#entry-table").DataTable({ paging: false });
+  $("#entry-table_filter > label > input").addClass("form-control mt-1 mb-2");
+  $("#entry-table_filter").css("text-align", "left");
+});
 
-  // Source: https://getbootstrap.com/docs/5.2/forms/validation/#custom-styles
-  () => {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll(".needs-validation");
+/****************************************************************************/
+/****************************************************************************/
+/****************************************************************************/
 
-    // Loop over them and prevent submission
-    Array.from(forms).forEach((form) => {
-      form.addEventListener(
-        "submit",
-        (event) => {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
+// Source: https://getbootstrap.com/docs/5.2/forms/validation/#custom-styles
+(() => {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll(".needs-validation");
 
-          form.classList.add("was-validated");
-        },
-        false
-      );
-    });
-  }
-)();
+  // Loop over them and prevent submission
+  Array.from(forms).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+})();
