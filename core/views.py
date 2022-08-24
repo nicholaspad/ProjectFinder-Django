@@ -1,4 +1,5 @@
 from django.views import generic
+from rest_framework.views import APIView
 
 from .models import Config
 
@@ -12,3 +13,7 @@ class IndexView(generic.TemplateView):
         context["netid"] = self.request.user.uniauth_profile.get_display_id()
         context["config"] = config
         return context
+
+    def post(self, request):
+        print(request)
+        pass
