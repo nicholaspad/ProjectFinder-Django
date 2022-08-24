@@ -1,5 +1,6 @@
 import re
 
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.views import generic
 
@@ -29,6 +30,8 @@ class IndexView(generic.TemplateView):
         ):
             response.status_code = 400
             return response
+
+        User.objects.filter(username=f"cas-princeton-{netid}").update(email=email)
 
         response.status_code = 201
         return response
