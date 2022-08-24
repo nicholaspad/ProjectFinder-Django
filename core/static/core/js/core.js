@@ -25,6 +25,7 @@ $("#settings-modal-save-btn").click((e) => {
       lastNameInput.val = lastName;
       alert("Your settings have been updated!");
       $("#settings-modal").modal("toggle");
+      location.reload();
     })
     .fail(() => alert("Failed to update your settings."))
     .always(() => $("#settings-modal-save-btn").removeClass("disabled"));
