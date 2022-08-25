@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
     <button type="button"
-            class="btn btn-primary mt-4"
+            class="btn btn-primary mt-4 {% if not has_completed_settings %} disabled {% endif %}"
             data-bs-toggle="modal"
             data-bs-target="#entry-modal">
         {% if has_created_entry %}
@@ -12,10 +12,17 @@
     {% if has_created_entry %}
     <button id="entry-delete-button"
             type="button"
-            class="btn btn-danger mt-4 ms-2">
+            class="btn btn-danger mt-4 ms-2 {% if not has_completed_settings %} disabled {% endif %}">
         <i class="bi bi-trash3-fill me-1"></i>
         Delete Entry</button>
     {% endif %}
 </div>
+
+{% if not has_completed_settings %}
+<div class="d-flex justify-content-center">
+    <p class="h6 text-center text-danger mt-3">You cannot create an entry until you complete the
+        Settings form in the upper right!</p>
+</div>
+{% endif %}
 
 {% include "core/modals/entry_modal.html" %}

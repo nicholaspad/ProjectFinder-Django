@@ -20,6 +20,9 @@ class IndexView(generic.TemplateView):
         context["netid"] = netid
         context["config"] = config
         context["user"] = user
+        context["has_completed_settings"] = (
+            len(user.email) > 0 and len(user.first_name) > 0 and len(user.last_name) > 0
+        )
         context["has_created_entry"] = hasattr(user, "entry")
         context["user_entry"] = user.entry if hasattr(user, "entry") else {}
 
