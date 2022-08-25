@@ -1,13 +1,11 @@
-import pytz
 import re
-from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.views import generic
 
 from .models import Config, Entry
-from .utils import get_username_from_netid
+from .utils import get_username_from_netid, is_past_due
 
 
 class IndexView(generic.TemplateView):
@@ -26,9 +24,7 @@ class IndexView(generic.TemplateView):
             len(user.email) > 0 and len(user.first_name) > 0 and len(user.last_name) > 0
         )
         context["has_created_entry"] = hasattr(user, "entry")
-        context["is_past_due"] = config.due_date < datetime.now(
-            tz=pytz.timezone("US/Eastern")
-        )
+        context["is_past_due"] = is_past_due()
         context["user_entry"] = user.entry if hasattr(user, "entry") else {}
 
         context["table_data"] = [
@@ -83,12 +79,7 @@ class CreateOrUpdateEntryView(generic.View):
         config = Config.objects.first()
 
         response = HttpResponse()
-        if (
-            len(skills) < 1
-            or len(interests) < 1
-            or not netid
-            or config.due_date < datetime.now(tz=pytz.timezone("US/Eastern"))
-        ):
+        if len(skills) < 1 or len(interests) < 1 or not netid or is_past_due():
             response.status_code = 400
             return response
 
