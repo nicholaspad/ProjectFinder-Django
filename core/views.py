@@ -1,4 +1,6 @@
+import pytz
 import re
+from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -24,6 +26,9 @@ class IndexView(generic.TemplateView):
             len(user.email) > 0 and len(user.first_name) > 0 and len(user.last_name) > 0
         )
         context["has_created_entry"] = hasattr(user, "entry")
+        context["is_past_due"] = config.due_date < datetime.now(
+            tz=pytz.timezone("US/Eastern")
+        )
         context["user_entry"] = user.entry if hasattr(user, "entry") else {}
 
         context["table_data"] = [
@@ -75,9 +80,15 @@ class CreateOrUpdateEntryView(generic.View):
         project_name = request.POST.get("projectName")
         project_description = request.POST.get("projectDescription")
         netid = self.request.user.uniauth_profile.get_display_id()
+        config = Config.objects.first()
 
         response = HttpResponse()
-        if len(skills) < 1 or len(interests) < 1 or not netid:
+        if (
+            len(skills) < 1
+            or len(interests) < 1
+            or not netid
+            or config.due_date < datetime.now(tz=pytz.timezone("US/Eastern"))
+        ):
             response.status_code = 400
             return response
 
