@@ -1,6 +1,6 @@
 <div class="table-responsive my-4">
     <table id="entry-table"
-           class="pf-entry-table table table-striped table-hover">
+           class="pf-entry-table table table-hover">
         <thead class="table-primary">
             <tr>
                 <th scope="col">Name</th>
@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             {% for row in table_data %}
-            <tr>
+            <tr class="{% if row.netid == netid %} table-warning {% endif %}">
                 <td>{{ row.name }}</td>
                 <td><code>{{ row.netid }}</code></td>
                 <td>
