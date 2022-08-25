@@ -19,6 +19,7 @@ class IndexView(generic.TemplateView):
         context["netid"] = netid
         context["config"] = config
         context["user"] = user
+        context["has_created_entry"] = hasattr(user, "entry")
 
         context["table_data"] = [
             {

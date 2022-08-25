@@ -20,7 +20,9 @@ class ConfigAdmin(admin.ModelAdmin):
 
 
 class Entry(models.Model):
-    author = models.OneToOneField(User, default=None, on_delete=models.CASCADE)
+    author = models.OneToOneField(
+        User, default=None, on_delete=models.CASCADE, related_name="entry"
+    )
     created_date = models.DateTimeField(auto_now=True)
     last_modified_date = models.DateTimeField(auto_now=True)
     skills = models.TextField(

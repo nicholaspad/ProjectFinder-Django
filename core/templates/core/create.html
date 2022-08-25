@@ -2,8 +2,8 @@
     <button type="button"
             class="btn btn-primary mt-4"
             data-bs-toggle="modal"
-            data-bs-target="#entry-modal"><i class="bi bi-pencil-fill me-1"></i> Create
-        Entry</button>
+            data-bs-target="#entry-modal"><i class="bi bi-pencil-fill me-1"></i>
+        {{ has_created_entry|yesno:"Edit,Create" }} Entry</button>
 </div>
 
 {% include "core/modals/entry_modal.html" %}
