@@ -27,7 +27,7 @@
                                   aria-describedby="entry-modal-skills-help"
                                   rows="2"
                                   placeholder="e.g. React, Flask, Python, JavaScript"
-                                  required></textarea>
+                                  required>{{ user_entry.skills }}</textarea>
                         <div class="invalid-feedback">
                             Please provide at least one skill!
                         </div>
@@ -44,7 +44,7 @@
                                   aria-describedby="entry-modal-interests-help"
                                   rows="2"
                                   placeholder="e.g. I want to built an app to help students with course planning."
-                                  required></textarea>
+                                  required>{{ user_entry.interests }}</textarea>
                         <div class="invalid-feedback">
                             Please provide a statement of interest!
                         </div>
@@ -59,6 +59,7 @@
                                type="text"
                                class="form-control"
                                aria-describedby="entry-modal-project-name-help"
+                               value="{{ user_entry.project_name }}"
                                placeholder="e.g. TigerSnatch">
                         <div id="entry-modal-project-name-help"
                              class="form-text">Once your team decides on a project name, enter it
@@ -73,7 +74,7 @@
                                   class="form-control"
                                   aria-describedby="entry-modal-project-description-help"
                                   rows="2"
-                                  placeholder="e.g. An app to notify students of seat openings in full courses."></textarea>
+                                  placeholder="e.g. An app to notify students of seat openings in full courses.">{{ user_entry.project_description }}</textarea>
                         <div id="entry-modal-project-description-help"
                              class="form-text">Once your team decides on a project description,
                             enter it here.

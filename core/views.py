@@ -20,6 +20,7 @@ class IndexView(generic.TemplateView):
         context["config"] = config
         context["user"] = user
         context["has_created_entry"] = hasattr(user, "entry")
+        context["user_entry"] = user.entry if hasattr(user, "entry") else {}
 
         context["table_data"] = [
             {
