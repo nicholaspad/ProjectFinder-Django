@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.views import generic
 
 from .models import Config, Entry
+from .utils import get_username_from_netid
 
 
 class IndexView(generic.TemplateView):
@@ -15,7 +16,7 @@ class IndexView(generic.TemplateView):
         netid = self.request.user.uniauth_profile.get_display_id()
         config = Config.objects.first()
         entries = Entry.objects.all().order_by("author__last_name")
-        user = User.objects.filter(username=f"cas-princeton-{netid}").first()
+        user = User.objects.filter(username=get_username_from_netid(netid)).first()
         context["netid"] = netid
         context["config"] = config
         context["user"] = user
@@ -54,7 +55,7 @@ class UpdateSettingsView(generic.View):
             response.status_code = 400
             return response
 
-        User.objects.filter(username=f"cas-princeton-{netid}").update(
+        User.objects.filter(username=get_username_from_netid(netid)).update(
             email=email, first_name=first_name, last_name=last_name
         )
 
@@ -76,10 +77,10 @@ class CreateOrUpdateEntryView(generic.View):
             return response
 
         Entry.objects.update_or_create(
-            author__username=f"cas-princeton-{netid}",
+            author__username=get_username_from_netid(netid),
             defaults={
                 "author": User.objects.filter(
-                    username=f"cas-princeton-{netid}"
+                    username=get_username_from_netid(netid)
                 ).first(),
                 "skills": skills,
                 "interests": interests,
@@ -101,7 +102,7 @@ class DeleteEntryView(generic.View):
             response.status_code = 400
             return response
 
-        Entry.objects.filter(author__username=f"cas-princeton-{netid}").delete()
+        Entry.objects.filter(author__username=get_username_from_netid(netid)).delete()
 
         response.status_code = 201
         return response
