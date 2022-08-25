@@ -15,4 +15,9 @@ urlpatterns = [
         login_required(views.UpdateSettingsView.as_view(), login_url=LOGIN_URL),
         name="update-settings",
     ),
+    path(
+        "create-or-update-entry",
+        login_required(views.CreateOrUpdateEntryView.as_view(), login_url=LOGIN_URL),
+        name="create-or-update-entry",
+    ),
 ]

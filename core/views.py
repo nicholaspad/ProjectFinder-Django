@@ -59,3 +59,33 @@ class UpdateSettingsView(generic.View):
 
         response.status_code = 201
         return response
+
+
+class CreateOrUpdateEntryView(generic.View):
+    def post(self, request):
+        skills = request.POST.get("skills")
+        interests = request.POST.get("interests")
+        project_name = request.POST.get("projectName")
+        project_description = request.POST.get("projectDescription")
+        netid = self.request.user.uniauth_profile.get_display_id()
+
+        response = HttpResponse()
+        if len(skills) < 1 or len(interests) < 1 or not netid:
+            response.status_code = 400
+            return response
+
+        Entry.objects.update_or_create(
+            author__username=f"cas-princeton-{netid}",
+            defaults={
+                "author": User.objects.filter(
+                    username=f"cas-princeton-{netid}"
+                ).first(),
+                "skills": skills,
+                "interests": interests,
+                "project_name": project_name,
+                "project_description": project_description,
+            },
+        )
+
+        response.status_code = 201
+        return response

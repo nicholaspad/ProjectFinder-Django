@@ -45,19 +45,19 @@ const initEntryModalSaveButton = () => {
     const projectName = String(projectNameInput.val());
     const projectDescription = String(projectDescriptionInput.val());
 
-    if (
-      skills.length < 1 ||
-      interests.length < 1 ||
-      projectName.length < 1 ||
-      projectDescription.length < 1
-    ) {
+    if (skills.length < 1 || interests.length < 1) {
       return;
     }
 
     e.preventDefault();
     $("#entry-modal-save-btn").addClass("disabled");
 
-    $.post("/", { email, firstName, lastName, type: "entry" })
+    $.post("/create-or-update-entry", {
+      skills,
+      interests,
+      projectName,
+      projectDescription,
+    })
       .done(() => {
         skillsInput.val = skills;
         interestsInput.val = interests;
@@ -80,6 +80,7 @@ const initDataTable = () => {
 
 $(document).ready(() => {
   initSettingModalSaveButton();
+  initEntryModalSaveButton();
   initDataTable();
 });
 
