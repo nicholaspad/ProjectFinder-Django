@@ -30,7 +30,7 @@ class Entry(models.Model):
         help_text="Comma-separated list of frameworks and technologies",
     )
     interests = models.TextField(
-        default="", max_length=150, help_text="Statement of general project interests"
+        default="", help_text="Statement of general project interests"
     )
-    project_name = models.CharField(max_length=50, default="")
-    project_description = models.TextField(default="", max_length=150)
+    project_name = models.CharField(max_length=100, default="")
+    project_description = models.TextField(default="")
