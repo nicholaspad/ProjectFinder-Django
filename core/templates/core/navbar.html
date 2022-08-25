@@ -1,6 +1,14 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">COS333 | ProjectFinder</span>
+        <span class="navbar-brand mb-0 h1">
+            <img src="{% static 'core/images/coffee-big.png' %}"
+                 alt="Coffee logo"
+                 width="24"
+                 height="24"
+                 class="d-inline-block align-text-top me-1">
+            COS333 | ProjectFinder</span>
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
