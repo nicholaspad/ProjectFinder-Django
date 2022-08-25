@@ -26,10 +26,13 @@
                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                class="form-control"
                                value="{{ user.email }}"
+                               aria-describedby="settings-modal-email-help"
                                required>
                         <div class="invalid-feedback">
                             Please provide a valid email address!
                         </div>
+                        <div id="settings-modal-email-help"
+                             class="form-text">We'll send due-date reminders to your email!</div>
                     </div>
                     <div class="mb-4">
                         <label for="settings-modal-first-name-input"
