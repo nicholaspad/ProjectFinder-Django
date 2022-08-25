@@ -76,6 +76,11 @@ const initEntryDeleteButton = () => {
   $("#entry-delete-button").click(() => {
     $("#entry-delete-button").addClass("disabled");
 
+    if (!confirm("Are you sure you want to delete your entry?")) {
+      $("#entry-delete-button").removeClass("disabled");
+      return;
+    }
+
     $.post("/delete-entry")
       .done(() => {
         alert("Your entry has been deleted!");
