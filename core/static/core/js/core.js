@@ -72,6 +72,20 @@ const initEntryModalSaveButton = () => {
   });
 };
 
+const initEntryDeleteButton = () => {
+  $("#entry-delete-button").click(() => {
+    $("#entry-delete-button").addClass("disabled");
+
+    $.post("/delete-entry")
+      .done(() => {
+        alert("Your entry has been deleted!");
+        location.reload();
+      })
+      .fail(() => alert("Failed to delete your entry."))
+      .always(() => $("#entry-delete-button").removeClass("disabled"));
+  });
+};
+
 const initDataTable = () => {
   $("#entry-table").DataTable({ paging: false });
   $("#entry-table_filter > label > input").addClass("form-control mt-1 mb-2");
@@ -81,6 +95,7 @@ const initDataTable = () => {
 $(document).ready(() => {
   initSettingModalSaveButton();
   initEntryModalSaveButton();
+  initEntryDeleteButton();
   initDataTable();
 });
 
