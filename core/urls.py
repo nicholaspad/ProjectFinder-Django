@@ -9,5 +9,10 @@ app_name = "core"
 urlpatterns = [
     path(
         "", login_required(views.IndexView.as_view(), login_url=LOGIN_URL), name="index"
-    )
+    ),
+    path(
+        "update-settings",
+        login_required(views.UpdateSettingsView.as_view(), login_url=LOGIN_URL),
+        name="update-settings",
+    ),
 ]

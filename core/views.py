@@ -35,6 +35,8 @@ class IndexView(generic.TemplateView):
 
         return context
 
+
+class UpdateSettingsView(generic.View):
     def post(self, request):
         email = request.POST.get("email")
         first_name = request.POST.get("firstName")

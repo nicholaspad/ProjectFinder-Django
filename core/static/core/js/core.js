@@ -19,7 +19,7 @@ const initSettingModalSaveButton = () => {
     e.preventDefault();
     $("#settings-modal-save-btn").addClass("disabled");
 
-    $.post("/", { email, firstName, lastName, type: "settings" })
+    $.post("/update-settings", { email, firstName, lastName })
       .done(() => {
         emailInput.val = email;
         firstNameInput.val = firstName;
