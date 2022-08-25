@@ -14,7 +14,7 @@ def is_past_due():
 
 
 def _dt_to_cron_str(dt):
-    return f"{dt.minute} {dt.hour} {dt.day} {dt.month} *"
+    return f"{dt.minute} {dt.hour} {dt.day} {dt.month} {dt.strftime('%a')}"
 
 
 def get_overdue_email_cron_str():
