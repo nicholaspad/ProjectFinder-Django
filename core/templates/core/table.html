@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             {% for row in table_data %}
-            <tr class="{% if row.netid == netid %} table-warning {% endif %}">
+            <tr class="{% if row.netid == netid %} table-secondary {% endif %}">
                 <td>{{ row.name }}</td>
                 <td><code>{{ row.netid }}</code></td>
                 <td>
