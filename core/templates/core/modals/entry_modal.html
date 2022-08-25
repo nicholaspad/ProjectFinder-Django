@@ -16,14 +16,75 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">Cancel</button>
-                <button type="button"
-                        class="btn btn-primary">Save</button>
+                <form class="needs-validation"
+                      novalidate>
+                    <div class="mb-4">
+                        <label for="entry-modal-skills-input"
+                               class="form-label">Skills</label>
+                        <textarea id="entry-modal-skills-input"
+                                  type="text"
+                                  class="form-control"
+                                  aria-describedby="entry-modal-skills-help"
+                                  rows="2"
+                                  placeholder="e.g. React, Flask, Python, JavaScript"
+                                  required></textarea>
+                        <div class="invalid-feedback">
+                            Please provide at least one skill!
+                        </div>
+                        <div id="entry-modal-skills-help"
+                             class="form-text">List a few technical skills, separated by commas.
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="entry-modal-interests-input"
+                               class="form-label">Interests</label>
+                        <textarea id="entry-modal-interests-input"
+                                  type="text"
+                                  class="form-control"
+                                  aria-describedby="entry-modal-interests-help"
+                                  rows="2"
+                                  placeholder="e.g. I want to built an app to help students with course planning."
+                                  required></textarea>
+                        <div class="invalid-feedback">
+                            Please provide a statement of interest!
+                        </div>
+                        <div id="entry-modal-interests-help"
+                             class="form-text">Write a sentence or two about your project interests.
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="entry-modal-project-name-input"
+                               class="form-label">Project Name</label>
+                        <input id="entry-modal-project-name-input"
+                               type="text"
+                               class="form-control"
+                               aria-describedby="entry-modal-project-name-help"
+                               placeholder="e.g. TigerSnatch">
+                        <div id="entry-modal-project-name-help"
+                             class="form-text">Once your team decides on a project name, enter it
+                            here.
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="entry-modal-project-description-input"
+                               class="form-label">Project Name</label>
+                        <textarea id="entry-modal-project-description-input"
+                                  type="text"
+                                  class="form-control"
+                                  aria-describedby="entry-modal-project-description-help"
+                                  rows="2"
+                                  placeholder="e.g. An app to notify students of seat openings in full courses."></textarea>
+                        <div id="entry-modal-project-description-help"
+                             class="form-text">Once your team decides on a project description,
+                            enter it here.
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <button id="settings-modal-save-btn"
+                                type="submit"
+                                class="btn btn-primary">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
