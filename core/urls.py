@@ -20,4 +20,9 @@ urlpatterns = [
         login_required(views.CreateOrUpdateEntryView.as_view(), login_url=LOGIN_URL),
         name="create-or-update-entry",
     ),
+    path(
+        "delete-entry",
+        login_required(views.DeleteEntryView.as_view(), login_url=LOGIN_URL),
+        name="delete-entry",
+    ),
 ]

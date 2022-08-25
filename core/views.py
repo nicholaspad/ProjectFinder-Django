@@ -90,3 +90,18 @@ class CreateOrUpdateEntryView(generic.View):
 
         response.status_code = 201
         return response
+
+
+class DeleteEntryView(generic.View):
+    def post(self, request):
+        netid = self.request.user.uniauth_profile.get_display_id()
+
+        response = HttpResponse()
+        if not netid:
+            response.status_code = 400
+            return response
+
+        Entry.objects.filter(author__username=f"cas-princeton-{netid}").delete()
+
+        response.status_code = 201
+        return response
