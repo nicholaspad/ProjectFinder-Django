@@ -1,4 +1,4 @@
-$(document).ready(() => {
+const initSettingModalSaveButton = () => {
   $("#settings-modal-save-btn").click((e) => {
     const validateEmail = (email) => {
       return email.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
@@ -31,10 +31,17 @@ $(document).ready(() => {
       .fail(() => alert("Failed to update your settings."))
       .always(() => $("#settings-modal-save-btn").removeClass("disabled"));
   });
+};
 
+const initDataTable = () => {
   $("#entry-table").DataTable({ paging: false });
   $("#entry-table_filter > label > input").addClass("form-control mt-1 mb-2");
   $("#entry-table_filter").css("text-align", "left");
+};
+
+$(document).ready(() => {
+  initSettingModalSaveButton();
+  initDataTable();
 });
 
 /****************************************************************************/
