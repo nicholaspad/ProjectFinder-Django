@@ -27,7 +27,7 @@ class IndexView(generic.TemplateView):
             {
                 "name": f"{entry.author.first_name} {entry.author.last_name}",
                 "netid": entry.author.username.split("-")[-1],
-                "skills": [e.strip() for e in entry.skills.split(",")],
+                "skills": entry.skills.split(", "),
                 "interests": entry.interests,
                 "project_name": entry.project_name,
                 "project_description": entry.project_description,
@@ -56,7 +56,9 @@ class UpdateSettingsView(generic.View):
             return response
 
         User.objects.filter(username=get_username_from_netid(netid)).update(
-            email=email, first_name=first_name, last_name=last_name
+            email=email.strip(),
+            first_name=first_name.strip(),
+            last_name=last_name.strip(),
         )
 
         response.status_code = 201
@@ -82,10 +84,12 @@ class CreateOrUpdateEntryView(generic.View):
                 "author": User.objects.filter(
                     username=get_username_from_netid(netid)
                 ).first(),
-                "skills": skills,
-                "interests": interests,
-                "project_name": project_name,
-                "project_description": project_description,
+                "skills": ", ".join(
+                    filter(None, [e.strip() for e in skills.split(",")])
+                ),
+                "interests": interests.strip(),
+                "project_name": project_name.strip(),
+                "project_description": project_description.strip(),
             },
         )
 
