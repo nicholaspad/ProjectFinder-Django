@@ -39,6 +39,7 @@ class Entry(models.Model):
 class EmailLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     date = models.DateTimeField()
+    email_type = models.CharField(max_length=100)
 
 
 class EmailLogAdmin(admin.ModelAdmin):
