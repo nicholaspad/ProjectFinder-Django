@@ -26,7 +26,7 @@ SECRET_KEY = getenv(
     "SECRET_KEY", "django-insecure-9keit4ec0hzoxxw$_li#^3akcmodtc8=s3okylayo04r$k%pd$"
 )
 
-DEBUG = not getenv("IS_PROD", False)
+DEBUG = not (getenv("IS_PROD", "False").lower() in ("true", "1", "t"))
 
 ALLOWED_HOSTS = [".vercel.app", ".herokuapp.com", "localhost", "127.0.0.1"]
 
