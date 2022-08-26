@@ -24,7 +24,7 @@ PyPDF2==1.26.0
 PyQt5==5.14.1
 PyQt5-sip==12.7.1
 python-dateutil==2.8.1
-requests==2.10.0
+requests==2.20.0
 s3transfer==0.3.6
 selenium==3.141.0
 six==1.10.0
