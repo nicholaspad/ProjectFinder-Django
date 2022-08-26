@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from os import getenv
 from pathlib import Path
 
-import django
+# import django
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,7 @@ SECRET_KEY = getenv(
 
 DEBUG = not getenv("IS_PROD", False)
 
-ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [".vercel.app", ".herokuapp.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -82,10 +82,10 @@ WSGI_APPLICATION = "ProjectFinder.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
 }
 
 
@@ -148,11 +148,11 @@ SECURE_HSTS_SECONDS = 60
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 
-django.setup()
+# django.setup()
 
-from core.utils import get_overdue_email_cron_str, get_reminder_email_cron_str  # noqa
+# from core.utils import get_overdue_email_cron_str, get_reminder_email_cron_str  # noqa
 
-CRONJOBS = [
-    (get_overdue_email_cron_str(), "core.cron.send_overdue_email"),
-    (get_reminder_email_cron_str(), "core.cron.send_reminder_email"),
-]
+# CRONJOBS = [
+#     (get_overdue_email_cron_str(), "core.cron.send_overdue_email"),
+#     (get_reminder_email_cron_str(), "core.cron.send_reminder_email"),
+# ]
