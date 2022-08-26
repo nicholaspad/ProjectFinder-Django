@@ -18,9 +18,13 @@ def send_email(to_email, message, sender_pw):
         server.sendmail(sender_email, to_email, message.strip())
 
 
-def log_email(users):
+def log_email(users, email_type):
     for user in users:
-        EmailLog(user=user, date=datetime.now(tz=pytz.timezone("US/Eastern"))).save()
+        EmailLog(
+            user=user,
+            date=datetime.now(tz=pytz.timezone("US/Eastern")),
+            email_type=email_type,
+        ).save()
 
 
 def get_username_from_netid(netid):

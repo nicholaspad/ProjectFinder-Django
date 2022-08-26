@@ -47,7 +47,7 @@ def send_overdue_email():
             os.getenv("EMAIL_PW", ""),
         )
 
-    log_email(users)
+    log_email(users, "overdue")
 
 
 def send_reminder_email():
@@ -76,4 +76,4 @@ def send_reminder_email():
             os.getenv("EMAIL_PW", ""),
         )
 
-    log_email(users)
+    log_email(users, "reminder")
