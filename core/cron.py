@@ -1,8 +1,11 @@
 import os
+import pytz
+from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db.models import Q
 
+from .models import Config
 from .utils import send_email
 
 OVERDUE_SUBJECT = "COS333 ProjectFinder entry past due"
@@ -19,6 +22,12 @@ BATCH_SIZE = 50
 
 
 def send_overdue_email():
+    due_date = Config.objects.first().due_date
+    diff = datetime.now(tz=pytz.timezone("US/Eastern")) - due_date
+    # scheduler should run once a day
+    if diff.days != 1:
+        return
+
     header = f"Subject: {OVERDUE_SUBJECT}\n\n"
     message = header + OVERDUE_MESSAGE
     to = []
@@ -40,6 +49,12 @@ def send_overdue_email():
 
 
 def send_reminder_email():
+    due_date = Config.objects.first().due_date
+    diff = due_date - datetime.now(tz=pytz.timezone("US/Eastern"))
+    # scheduler should run once a day
+    if diff.days != 1:
+        return
+
     header = f"Subject: {REMINDER_SUBJECT}\n\n"
     message = header + REMINDER_MESSAGE
     to = []
