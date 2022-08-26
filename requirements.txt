@@ -19,7 +19,7 @@ mypy-extensions==0.4.3
 pathspec==0.9.0
 platformdirs==2.5.2
 protobuf==4.21.5
-Pygments==1.6
+Pygments==2.7.4
 PyPDF2==1.26.0
 PyQt5==5.14.1
 PyQt5-sip==12.7.1
