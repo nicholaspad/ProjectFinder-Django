@@ -28,11 +28,7 @@ SECRET_KEY = getenv(
 
 DEBUG = not (getenv("IS_PROD", "False").lower() in ("true", "1", "t"))
 
-ALLOWED_HOSTS = [
-    "pf-env.eba-pejcwrpr.us-west-2.elasticbeanstalk.com",
-    "localhost",
-    "127.0.0.1",
-]
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
