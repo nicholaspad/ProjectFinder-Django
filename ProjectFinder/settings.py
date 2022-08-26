@@ -156,3 +156,6 @@ SECURE_HSTS_PRELOAD = True
 #     (get_overdue_email_cron_str(), "core.cron.send_overdue_email"),
 #     (get_reminder_email_cron_str(), "core.cron.send_reminder_email"),
 # ]
+
+EMAIL = getenv("EMAIL", "")
+EMAIL_PW = getenv("EMAIL_PW", "")

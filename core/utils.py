@@ -3,13 +3,15 @@ import smtplib
 import ssl
 from datetime import datetime, timedelta
 
+from ProjectFinder.settings import EMAIL
+
 from .models import Config, EmailLog
 
 
 def send_email(to_email, message, sender_pw):
     port = 587
     smtp_server = "smtp-mail.outlook.com"
-    sender_email = "tigersnatch@princeton.edu"
+    sender_email = EMAIL
 
     context = ssl.create_default_context()
     with smtplib.SMTP(smtp_server, port) as server:

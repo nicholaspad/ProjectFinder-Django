@@ -1,9 +1,9 @@
-import os
-import pytz
 from datetime import datetime
 
+import pytz
 from django.contrib.auth.models import User
 from django.db.models import Q
+from ProjectFinder.settings import EMAIL_PW
 
 from .models import Config
 from .utils import log_email, send_email
@@ -44,7 +44,7 @@ def send_overdue_email():
         send_email(
             to[i : i + BATCH_SIZE],
             message,
-            os.getenv("EMAIL_PW", ""),
+            EMAIL_PW,
         )
 
     log_email(users, "overdue")
@@ -73,7 +73,7 @@ def send_reminder_email():
         send_email(
             to[i : i + BATCH_SIZE],
             message,
-            os.getenv("EMAIL_PW", ""),
+            EMAIL_PW,
         )
 
     log_email(users, "reminder")
