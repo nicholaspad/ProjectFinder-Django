@@ -1,7 +1,21 @@
 import pytz
+import smtplib
+import ssl
 from datetime import datetime, timedelta
 
 from .models import Config
+
+
+def send_email(to_email, message, sender_pw):
+    port = 587
+    smtp_server = "smtp-mail.outlook.com"
+    sender_email = "tigersnatch@princeton.edu"
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP(smtp_server, port) as server:
+        server.starttls(context=context)
+        server.login(sender_email, sender_pw)
+        server.sendmail(sender_email, to_email, message.strip())
 
 
 def get_username_from_netid(netid):
