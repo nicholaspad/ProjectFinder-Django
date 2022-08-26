@@ -39,3 +39,8 @@ class Entry(models.Model):
 class EmailLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     date = models.DateTimeField()
+
+
+class EmailLogAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return False

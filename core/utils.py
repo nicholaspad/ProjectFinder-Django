@@ -3,7 +3,7 @@ import smtplib
 import ssl
 from datetime import datetime, timedelta
 
-from .models import Config
+from .models import Config, EmailLog
 
 
 def send_email(to_email, message, sender_pw):
@@ -16,6 +16,11 @@ def send_email(to_email, message, sender_pw):
         server.starttls(context=context)
         server.login(sender_email, sender_pw)
         server.sendmail(sender_email, to_email, message.strip())
+
+
+def log_email(users):
+    for user in users:
+        EmailLog(user=user, date=datetime.now(tz=pytz.timezone("US/Eastern"))).save()
 
 
 def get_username_from_netid(netid):

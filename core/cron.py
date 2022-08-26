@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 
 from .models import Config
-from .utils import send_email
+from .utils import log_email, send_email
 
 OVERDUE_SUBJECT = "COS333 ProjectFinder entry past due"
 OVERDUE_MESSAGE = """Hello,
@@ -31,9 +31,9 @@ def send_overdue_email():
     header = f"Subject: {OVERDUE_SUBJECT}\n\n"
     message = header + OVERDUE_MESSAGE
     to = []
-    for user in User.objects.filter(~Q(username="admin"), entry__isnull=True):
-        if user.username == "admin":
-            continue
+
+    users = User.objects.filter(~Q(username="admin"), entry__isnull=True)
+    for user in users:
         if user.email:
             to.append(user.email)
             continue
@@ -46,6 +46,8 @@ def send_overdue_email():
             message,
             os.getenv("EMAIL_PW", ""),
         )
+
+    log_email(users)
 
 
 def send_reminder_email():
@@ -58,9 +60,9 @@ def send_reminder_email():
     header = f"Subject: {REMINDER_SUBJECT}\n\n"
     message = header + REMINDER_MESSAGE
     to = []
-    for user in User.objects.filter(~Q(username="admin")):
-        if user.username == "admin":
-            continue
+
+    users = User.objects.filter(~Q(username="admin"))
+    for user in users:
         if user.email:
             to.append(user.email)
             continue
@@ -73,3 +75,5 @@ def send_reminder_email():
             message,
             os.getenv("EMAIL_PW", ""),
         )
+
+    log_email(users)
