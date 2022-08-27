@@ -35,5 +35,5 @@ static3==0.6.1
 tomli==2.0.1
 tornado==6.2
 typing_extensions==4.3.0
-urllib3==1.11
+urllib3==1.26.5
 Werkzeug==0.16.1
