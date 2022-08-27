@@ -1,1 +1,1 @@
-web: gunicorn ProjectFinder.wsgi:application
+web: gunicorn ProjectFinder.wsgi
