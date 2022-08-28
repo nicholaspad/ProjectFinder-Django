@@ -94,7 +94,6 @@ const initEntryDeleteButton = () => {
 const initDataTable = () => {
   $("#entry-table").DataTable({ paging: false });
   $("#entry-table_filter > label > input").addClass("form-control mt-1 mb-2");
-  $("#entry-table_filter").css("text-align", "left");
 };
 
 $(document).ready(() => {
