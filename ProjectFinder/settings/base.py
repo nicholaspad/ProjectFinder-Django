@@ -122,4 +122,4 @@ EMAIL_PW = getenv("EMAIL_PW", "")
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_URL = "staticfiles/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
