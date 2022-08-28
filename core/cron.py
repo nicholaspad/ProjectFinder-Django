@@ -21,16 +21,24 @@ Just a reminder that your ProjectFinder entry is due tomorrow (visit the website
 BATCH_SIZE = 50
 
 
-def send_overdue_email():
+def send_overdue_email(test_email=None):
+    header = f"Subject: {OVERDUE_SUBJECT}\n\n"
+    message = header + OVERDUE_MESSAGE
+    to = []
+
+    if test_email:
+        send_email(
+            [test_email],
+            message,
+            EMAIL_PW,
+        )
+        return
+
     due_date = Config.objects.first().due_date
     diff = datetime.now(tz=pytz.timezone("US/Eastern")) - due_date
     # scheduler should run once a day
     if diff.days != 1:
         return
-
-    header = f"Subject: {OVERDUE_SUBJECT}\n\n"
-    message = header + OVERDUE_MESSAGE
-    to = []
 
     users = User.objects.filter(~Q(username="admin"), entry__isnull=True)
     for user in users:
@@ -50,16 +58,24 @@ def send_overdue_email():
     log_email(users, "overdue")
 
 
-def send_reminder_email():
+def send_reminder_email(test_email=None):
+    header = f"Subject: {REMINDER_SUBJECT}\n\n"
+    message = header + REMINDER_MESSAGE
+    to = []
+
+    if test_email:
+        send_email(
+            [test_email],
+            message,
+            EMAIL_PW,
+        )
+        return
+
     due_date = Config.objects.first().due_date
     diff = due_date - datetime.now(tz=pytz.timezone("US/Eastern"))
     # scheduler should run once a day
     if diff.days != 1:
         return
-
-    header = f"Subject: {REMINDER_SUBJECT}\n\n"
-    message = header + REMINDER_MESSAGE
-    to = []
 
     users = User.objects.filter(~Q(username="admin"))
     for user in users:
