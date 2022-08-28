@@ -95,7 +95,7 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_URL = "/auth/login/"
 UNIAUTH_LOGIN_DISPLAY_STANDARD = False
-UNIAUTH_LOGOUT_CAS_COMPLETELY = False
+UNIAUTH_LOGOUT_CAS_COMPLETELY = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
