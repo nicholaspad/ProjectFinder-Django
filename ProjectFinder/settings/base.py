@@ -10,26 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from os import environ, getenv, path
+from os import getenv
 from pathlib import Path
 
-import dj_database_url
+# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = getenv(
     "SECRET_KEY", "django-insecure-9keit4ec0hzoxxw$_li#^3akcmodtc8=s3okylayo04r$k%pd$"
 )
-
-DEBUG = not (getenv("IS_PROD", "False").lower() in ("true", "1", "t"))
-
-ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
-
 
 # Application definition
 
@@ -76,26 +67,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "ProjectFinder.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
-if "DATABASE_URL" in environ:
-    # Configure Django for DATABASE_URL environment variable
-    DATABASES["default"] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
-    # Enable test database if found in CI environment
-    if "CI" in environ:
-        DATABASES["default"]["TEST"] = DATABASES["default"]
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -125,7 +96,6 @@ LOGIN_URL = "/auth/login/"
 UNIAUTH_LOGIN_DISPLAY_STANDARD = False
 UNIAUTH_LOGOUT_CAS_COMPLETELY = False
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -137,25 +107,18 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = "static/"
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = not DEBUG
-# SECURE_HSTS_SECONDS = 60
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
-
-STATIC_ROOT = path.join(BASE_DIR, "static")
+# Email credentials
 
 EMAIL = getenv("EMAIL", "")
 EMAIL_PW = getenv("EMAIL_PW", "")
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
+STATICFILES_DIRS = [BASE_DIR / "core/static"]
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
