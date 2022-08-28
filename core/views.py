@@ -21,7 +21,10 @@ class IndexView(generic.TemplateView):
         context["config"] = config
         context["user"] = user
         context["has_completed_settings"] = (
-            len(user.email) > 0 and len(user.first_name) > 0 and len(user.last_name) > 0
+            user
+            and len(user.email) > 0
+            and len(user.first_name) > 0
+            and len(user.last_name) > 0
         )
         context["has_created_entry"] = hasattr(user, "entry")
         context["is_past_due"] = is_past_due()
