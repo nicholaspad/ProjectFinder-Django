@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import pytz
 from django.contrib.auth.models import User
@@ -10,6 +10,10 @@ from .models import Config
 from .utils import log_email, send_email
 
 BATCH_SIZE = 50
+
+"""
+These two methods are designed to be run once a day at 9am.
+"""
 
 
 def send_overdue_email(test_email=None):
@@ -27,8 +31,7 @@ def send_overdue_email(test_email=None):
 
     due_date = Config.objects.first().due_date
     diff = datetime.now(tz=pytz.timezone("US/Eastern")) - due_date
-    # scheduler should run once a day
-    if diff.days != 1:
+    if diff.days != 0:
         return
 
     users = User.objects.filter(~Q(username="admin"), entry__isnull=True)
@@ -64,7 +67,6 @@ def send_reminder_email(test_email=None):
 
     due_date = Config.objects.first().due_date
     diff = due_date - datetime.now(tz=pytz.timezone("US/Eastern"))
-    # scheduler should run once a day
     if diff.days != 1:
         return
 
